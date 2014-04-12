@@ -18,15 +18,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+    <!--<parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
         <version>10</version>
-    </parent>
+    </parent>-->
 
     <groupId>org.apache.storm</groupId>
     <artifactId>storm</artifactId>
-    <version>0.9.1t2</version>
+    <version>0.9.1t3</version>
     <packaging>pom</packaging>
     <name>Storm</name>
     <description>Distributed and fault-tolerant realtime computation</description>
@@ -173,6 +173,8 @@
         <clojure-complete.version>0.2.3</clojure-complete.version>
         <mockito.version>1.9.5</mockito.version>
         <reply.version>0.3.0</reply.version>
+        <jzmq.version>2.1.0-SNAPSHOT-halfaleague</jzmq.version>
+        <storm0mq.version>0.9.0-ptgoetz</storm0mq.version>
 
 
     </properties>
@@ -249,6 +251,16 @@
     </profiles>
 
     <distributionManagement>
+        <repository>
+            <id>archiva.internal</id>
+            <name>Releases</name>
+            <url>http://dev.tellapart.com:8085/archiva/repository/internal/</url>
+        </repository>
+        <snapshotRepository>
+            <id>archiva.snapshots</id>
+            <name>Snapshots</name>
+            <url>http://dev.tellapart.com:8085/archiva/repository/snapshots/</url>
+        </snapshotRepository>
         <site>
             <id>storm.maven.website</id>
             <name>Storm Website</name>
@@ -380,6 +392,16 @@
                 <version>${netty.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.zeromq</groupId>
+                <artifactId>jzmq</artifactId>
+                <version>${jzmq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>storm</groupId>
+                <artifactId>storm-0mq</artifactId>
+                <version>${storm0mq.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.clojure</groupId>
                 <artifactId>tools.nrepl</artifactId>
                 <version>${clojure.tools.nrepl.version}</version>
@@ -431,6 +453,14 @@
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>archiva.internal</id>
+            <url>http://dev.tellapart.com:8085/archiva/repository/internal</url>
+        </repository>
+        <repository>
+            <id>archiva.snapshots</id>
+            <url>http://dev.tellapart.com:8085/archiva/repository/snapshots</url>
+        </repository>
         <repository>
             <releases>
                 <enabled>true</enabled>
